@@ -12,7 +12,7 @@
 #   -h : Display this help message
 #
 # Example Usage:
-#   ./cgen.sh sample.site.com               # Generate CSR and KEY for sample.site.com
+#   ./csrgen.sh sample.site.com               # Generate CSR and KEY for sample.site.com
 #   ./csrgen.sh -d sample.site.com            # Generate CSR, KEY, and DH pem file
 #   ./csrgen.sh -e sample.site.com            # Generate CSR and KEY for INT, QA, and Prod environments
 ```
