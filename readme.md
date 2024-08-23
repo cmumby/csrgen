@@ -19,7 +19,7 @@
 
 ## Setting up script as a terminal command
 
-run the following command to add the script to your path variable. This wil enable tthe use the command `csrgen`
+run the following command from the project's directory to add the script to your path variable. This wil enable tthe use the command `csrgen`
 
 ```bash
 mkdir -p ~/scripts
