@@ -21,12 +21,10 @@ display_help() {
   echo "  ./csrgen.sh -e sample.site.com            # Generate CSR and KEY for INT, QA, and Prod environments"
 }
 
-# Parse the options and arguments
 while [[ "$#" -gt 0 ]]; do
   case "$1" in
     -d*)
       GENERATE_DHPARAM=true
-      # Check for any combined flag, e.g., -de or -ed
       if [[ "$1" == *e* ]]; then
         ENVIRONMENTAL=true
       fi
@@ -34,7 +32,6 @@ while [[ "$#" -gt 0 ]]; do
       ;;
     -e*)
       ENVIRONMENTAL=true
-      # Check for any combined flag, e.g., -de or -ed
       if [[ "$1" == *d* ]]; then
         GENERATE_DHPARAM=true
       fi
@@ -78,7 +75,7 @@ generate_certs() {
 
   local formatted_domain=$(echo "$domain_name" | tr '.' '_')
 
-  # Main Command to generate the CSR, KEY files
+  # Main command to generate the CSR, KEY files
   openssl req -new -newkey rsa:2048 -nodes -out "${formatted_domain}.csr" -keyout "${formatted_domain}.key" -subj "/C=US/ST=WI/L=Milwaukee/O=Northwestern Mutual/OU=NMXP/CN=${domain_name}"
 
   if $GENERATE_DHPARAM; then
