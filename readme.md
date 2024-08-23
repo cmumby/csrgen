@@ -12,9 +12,9 @@
 #   -h : Display this help message
 #
 # Example Usage:
-#   ./script.sh sample.site.com               # Generate CSR and KEY for sample.site.com
-#   ./script.sh -d sample.site.com            # Generate CSR, KEY, and DH pem file
-#   ./script.sh -e sample.site.com            # Generate CSR and KEY for INT, QA, and Prod environments
+#   ./cgen.sh sample.site.com               # Generate CSR and KEY for sample.site.com
+#   ./csrgen.sh -d sample.site.com            # Generate CSR, KEY, and DH pem file
+#   ./csrgen.sh -e sample.site.com            # Generate CSR and KEY for INT, QA, and Prod environments
 ```
 
 ## Setting up script as a terminal command
