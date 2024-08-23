@@ -48,7 +48,6 @@ while [[ "$#" -gt 0 ]]; do
   esac
 done
 
-# Ensures the user has provided a domain parameter
 if [ -z "$DOMAIN" ]; then
   echo "Error: No domain provided."
   display_help
@@ -75,9 +74,10 @@ generate_certs() {
 
   local formatted_domain=$(echo "$domain_name" | tr '.' '_')
 
-  # Main command to generate the CSR, KEY files
+  # Main Command
   openssl req -new -newkey rsa:2048 -nodes -out "${formatted_domain}.csr" -keyout "${formatted_domain}.key" -subj "/C=US/ST=WI/L=Milwaukee/O=Northwestern Mutual/OU=NMXP/CN=${domain_name}"
 
+ # dparam2 pem file command if needed
   if $GENERATE_DHPARAM; then
     openssl dhparam -dsaparam -out dhparam2.pem 4096
   fi
@@ -85,17 +85,17 @@ generate_certs() {
   echo "Files generated in $dir_name for $domain_name"
 }
 
-# Creates INT DEV AND PROD versions if needed
+# Creates INT QA AND PROD versions if needed
 if $ENVIRONMENTAL; then
   INT_DIR="${MAIN_DIR}/INT"
   QA_DIR="${MAIN_DIR}/QA"
-  PROD_DIR="${MAIN_DIR}/Prod"
+  PROD_DIR="${MAIN_DIR}/PROD"
 
   generate_certs "sample-int.${DOMAIN}" "$INT_DIR"
   generate_certs "sample-qa.${DOMAIN}" "$QA_DIR"
   generate_certs "${DOMAIN}" "$PROD_DIR"
 
 else
-  # NO INT PROD and DEV directories if -e is ommited
+  # NO INT QA and PROD directories if -e is ommited
   generate_certs "$DOMAIN" "$MAIN_DIR"
 fi
